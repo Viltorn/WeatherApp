@@ -1,0 +1,74 @@
+/* @import url('./css/normalize.css');
+@import url('./css/main.css');
+@import url('./css/aside.css');
+@import url('./css/searchPanel.css');
+@import url('./css/todayForecast.css'); */
+@import url('./css/variables.css');
+
+
+@font-face {
+  font-weight: 300; /* Соответствует значению regular*/
+  font-family: Rubik;
+  src: url("./fonts/Rubik-Light.woff");
+}
+
+@font-face {
+  font-weight: 400; /* Соответствует значению regular*/
+  font-family: Rubik;
+  src: url("./fonts/Rubik-Regular.woff");
+}
+
+
+@font-face {
+  font-weight: 500; /* Соответствует значению medium*/
+  font-family: Rubik;
+  src: url("./fonts/Rubik-Medium.woff");
+}
+
+@font-face {
+  font-weight: 700; /* Соответствует значению bold */
+  font-family: Rubik;
+  src: url("./fonts/Rubik-Bold.woff");
+}
+
+
+@font-face {
+  font-weight: 800; /* Соответствует значению extra-bold */
+  font-family: Rubik;
+  src: url("./fonts/Rubik-ExtraBold.woff");
+}
+
+@font-face {
+  font-weight: 900; /* Соответствует значению extra-bold */
+  font-family: Rubik;
+  src: url("./fonts/Rubik-Black.woff");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", "Arial", sans-serif;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+body {
+  line-height: normal;
+  font-family: "Rubik", "Arial", sans-serif;
+  font-weight: 500;
+  display: block;
+  box-sizing: border-box;
+  color: var(--gray);
+}
+
+

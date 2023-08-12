@@ -1,0 +1,30 @@
+:root {
+
+  /* font sizes */
+  --font-size-s: 14px;
+  --font-size-m: 18px;
+  --font-size-m20: 20px;
+  --font-size-m24: 24px;
+  --font-size-xl: 64px;
+  --font-size-xxl: 96px;
+  --font-size-l: 36px;
+  --font-size-big: 50px;
+
+  /* Colors */
+  --mute-text: #d3d3d3;
+  --main-font: #48484a;
+  --background-main: #f1f1f1;
+  --background-secondary: #fff;
+  --secondary-font: #acacac;
+  --font-gray: #acacac;
+  --background-third: #E6E6E6;
+  --accent: #EC6E4D;
+  --background-forth: #D3D3D3;
+
+  /* border radiuses */
+  --br-10: 10px;
+  --br-8: 8px;
+
+  /* icons sizez */
+  --location: 40px;
+}

@@ -1,0 +1,74 @@
+/* TODAY FORECAST */
+
+.forecast-today {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 19px;
+}
+
+.forecast-today__title {
+  font-size: var(--font-size-m24);
+  font-weight: 700;
+  line-height: 100%;
+  font-style: normal;
+}
+
+.forecast-today__cards-block {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: start;
+  align-items: start;
+  gap: 18px 80px;
+}
+
+@media (max-width: 833px) {
+  .forecast-today {
+    gap: 30px;
+    margin-left: 0;
+    align-items: center;
+    width: 100%;
+  }
+  .forecast-today__cards-block {
+    gap: 27px;
+    grid-template-columns: repeat(1, auto);
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+  }
+  .forecast-today__cards {
+    gap: 27px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .forecast-today__major-card:first-child {
+    margin-bottom: 16px;
+  }
+}
+
+
+@media (min-width: 834px) and (max-width: 1439px) {
+  .forecast-today {
+    gap: 30px;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .forecast-today__major-card {
+    min-width: 300px;
+  }
+
+  .forecast-today__cards-block {
+    gap: 27px;
+    justify-content: space-between;
+    align-content: start;
+    grid-template-columns: auto;
+    margin-left: 14px;
+    width: 100%;
+  }
+  .forecast-today__title {
+    align-self: start;
+  }
+}

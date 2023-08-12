@@ -1,0 +1,43 @@
+.forecast-block__card {
+  padding-top: 16.72px;
+  padding-bottom: 15px;
+  height: 143px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--background-secondary) no-repeat;
+  background-position: top 24.25px center;
+  border-radius: var(--br-8);
+  box-shadow: 0px 7px 12px 0px rgba(0, 0, 0, 0.05);
+}
+
+.forecast-block__card-value {
+  color: var(--main-font);
+  text-align: center;
+  font-size: var(--font-size-s);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.forecast-block__card-temperature {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 18px;
+}
+
+.text-mute {
+  color: var(--mute-text);
+}
+
+@media (max-width: 833px) {
+  .forecast-block__card {
+    margin-right: auto;
+  }
+}
+
+
