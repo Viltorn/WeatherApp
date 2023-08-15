@@ -43,13 +43,15 @@ export const parseForecast = (rowData) => {
 };
 
 export const parseWeatherData = (rowData) => {
-  const { main, wind, weather } = rowData;
+  const {
+    main, wind, weather, name,
+  } = rowData;
   const { temp, humidity } = main;
   const temperature = Math.round(temp);
   const feelsTemp = Math.round(main.feels_like);
   const windSpeed = Math.round(wind.speed);
   const angle = wind.deg;
-  const { name } = windDirections.find((direct) => wind.deg <= direct.maxDegree);
+  const windName = windDirections.find((direct) => wind.deg <= direct.maxDegree).name;
   const visibility = Math.round(rowData.visibility / 100) / 10;
   const pressure = Math.round(main.pressure / 1.333);
   const { icon, description } = weather[0];
@@ -60,13 +62,14 @@ export const parseWeatherData = (rowData) => {
   const month = months[date.getMonth()];
   const weekDay = weekDays[dayNumber];
   const data = {
+    cityName: name,
     temperature,
     feelsTemp,
     windSpeed,
     pressure,
     humidity,
     visibility,
-    windData: { name, angle, speed: windSpeed },
+    windData: { name: windName, angle, speed: windSpeed },
     currentDate: { day, month, weekDay },
     condition,
     icon,

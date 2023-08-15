@@ -33,6 +33,7 @@ const SearchPanel = ({ closeBtn, searchPanel }) => {
   const [error, setError] = useState(null);
   const [isSubmitting, setSubmitting] = useState(false);
   const {
+    weatherData,
     setForeCastData,
     setWeatherData,
     setLoading,
@@ -48,6 +49,7 @@ const SearchPanel = ({ closeBtn, searchPanel }) => {
     setLoading(true);
     try {
       const weather = await axios.get(routes.weatherRoute(lat, lon, key));
+      console.log(weather.data);
       const forecast = await axios.get(routes.forecastRoute(lat, lon, key));
       if (weather.status === 200 && forecast.status === 200) {
         setForeCastData(parseForecast(forecast.data));
@@ -100,8 +102,35 @@ const SearchPanel = ({ closeBtn, searchPanel }) => {
     }
   };
 
+  const getLocatedWeather = () => {
+    async function success(position) {
+      const { latitude } = position.coords;
+      const { longitude } = position.coords;
+      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      const weatheRequest = await makeWeatherRequest(latitude, longitude, wheatherKey);
+      if (weatheRequest) {
+        setActiveCity({ ...activeCity, cityName: weatherData.cityName });
+      }
+    }
+
+    function locError() {
+      console.log('Unable to retrieve your location');
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, locError);
+    } else {
+      console.log('Geolocation not supported');
+    }
+  };
+
   useEffect(() => {
-    makeWeatherRequest(activeCity.lat, activeCity.lon, wheatherKey);
+    try {
+      getLocatedWeather();
+    } catch (e) {
+      console.log(e);
+      makeWeatherRequest(activeCity.lat, activeCity.lon, wheatherKey);
+    }
   }, []);
 
   return (
