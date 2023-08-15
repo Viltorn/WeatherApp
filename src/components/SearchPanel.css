@@ -126,7 +126,7 @@
 @media (max-width: 833px) {
   .search-panel {
     width: 100vw;
-    height: 700px;
+    height: 100vh;
     padding: 40px 50px 0 27px;
   }
   .search-panel_open {

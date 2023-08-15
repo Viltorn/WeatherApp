@@ -156,6 +156,12 @@
   margin-right: var(--location);
 }
 
+.side-bar__btn-styless {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 @media (max-width: 833px) {
   .side-bar {
     height: 100vh;

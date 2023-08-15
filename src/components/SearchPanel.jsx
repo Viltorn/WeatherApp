@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, {
-  useEffect, useState, useRef, useContext,
+  useState, useRef, useContext,
 } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
@@ -10,8 +10,8 @@ import searchIcon from '../images/SearchIcon.svg';
 import routes from '../routes';
 import WeatherContext from '../context/weatherContext';
 import BtnArrow from '../images/BtnArrow.svg';
-import { parseForecast, parseWeatherData, parseCityData } from '../utils/parseFunctions';
 import './SearchPanel.css';
+import { parseCityData } from '../utils/parseFunctions';
 
 /* UTILS */
 
@@ -27,41 +27,25 @@ const getCities = (city, cities) => {
 
 /* SEARCH PANEL */
 
-const SearchPanel = ({ closeBtn, searchPanel }) => {
+const SearchPanel = () => {
   const inputEl = useRef();
   const [inputValue, setValue] = useState('Москва');
-  const [error, setError] = useState(null);
-  const [isSubmitting, setSubmitting] = useState(false);
   const {
-    weatherData,
-    setForeCastData,
-    setWeatherData,
-    setLoading,
+    isSearchOpen,
     activeCity,
     setActiveCity,
-    searched,
-    addSearched,
+    setSearchedHistory,
+    getSearchedHistory,
+    toogleSearchBar,
+    makeWeatherRequest,
+    setError,
+    wheatherKey,
+    setSubmitting,
+    error,
+    isSubmitting,
   } = useContext(WeatherContext);
 
-  const wheatherKey = process.env.REACT_APP_WEATHER_API_KEY;
-
-  const makeWeatherRequest = async (lat, lon, key) => {
-    setLoading(true);
-    try {
-      const weather = await axios.get(routes.weatherRoute(lat, lon, key));
-      const forecast = await axios.get(routes.forecastRoute(lat, lon, key));
-      if (weather.status === 200 && forecast.status === 200) {
-        setForeCastData(parseForecast(forecast.data));
-        setWeatherData(parseWeatherData(weather.data));
-        setLoading(false);
-        closeBtn('close');
-      }
-    } catch (err) {
-      console.log(err);
-      setError(err.message);
-      inputEl.current.focus();
-    }
-  };
+  const searchedCities = getSearchedHistory() ?? [];
 
   const handleChange = (e) => {
     setError(null);
@@ -71,7 +55,7 @@ const SearchPanel = ({ closeBtn, searchPanel }) => {
   const handleActiveClick = (city) => {
     makeWeatherRequest(city.lat, city.lon, wheatherKey);
     setActiveCity(city);
-    closeBtn();
+    toogleSearchBar(false);
   };
 
   const handleSubmit = async (e) => {
@@ -84,9 +68,9 @@ const SearchPanel = ({ closeBtn, searchPanel }) => {
       const response = await axios.get(routes.cityRoute(inputValue));
       if (response.status === 200 && response.data.length > 0) {
         const cityData = parseCityData(response.data[0]);
-        const citiesToDisplay = getCities(cityData, searched);
+        const citiesToDisplay = getCities(cityData, searchedCities);
         setActiveCity({ ...cityData });
-        addSearched(citiesToDisplay);
+        setSearchedHistory(citiesToDisplay);
         setValue('');
         setSubmitting(false);
         makeWeatherRequest(cityData.lat, cityData.lon, wheatherKey);
@@ -101,42 +85,10 @@ const SearchPanel = ({ closeBtn, searchPanel }) => {
     }
   };
 
-  const getLocatedWeather = () => {
-    async function success(position) {
-      try {
-        const { latitude } = position.coords;
-        const { longitude } = position.coords;
-        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-        const weatheRequest = await makeWeatherRequest(latitude, longitude, wheatherKey);
-        if (weatheRequest) {
-          console.log(weatherData.cityName);
-          setActiveCity({ ...activeCity, cityName: weatherData.cityName });
-        }
-      } catch (e) {
-        console.log(e.message);
-      }
-    }
-
-    function locError() {
-      console.log('Невозможно получить геолокацию');
-      makeWeatherRequest(activeCity.lat, activeCity.lon, wheatherKey);
-    }
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, locError);
-    } else {
-      console.log('Geolocation not supported');
-    }
-  };
-
-  useEffect(() => {
-    getLocatedWeather();
-  }, []);
-
   return (
-    <div className="search-panel" style={{ transform: `${searchPanel ? 'translateX(0)' : 'translate(-100%)'}` }}>
+    <div className="search-panel" style={{ transform: `${isSearchOpen ? 'translateX(0)' : 'translate(-100%)'}` }}>
       <div className="search-panel__container">
-        <button className="search-panel__close-button" onClick={() => closeBtn('close')} id="close-panel" type="button" aria-label="Закрыть панель">
+        <button className="search-panel__close-button" onClick={() => toogleSearchBar(false)} id="close-panel" type="button" aria-label="Закрыть панель">
           <img src={searchIcon} alt="search icon" />
         </button>
         <form className="search-panel__form" onSubmit={handleSubmit}>
@@ -156,8 +108,8 @@ const SearchPanel = ({ closeBtn, searchPanel }) => {
           </button>
         </form>
         <div className="search-bar__searched-cities">
-          {searched.length !== 0 && (
-            searched.map((item) => (
+          {searchedCities.length !== 0 && (
+            searchedCities.map((item) => (
               <button type="button" key={_.uniqueId()} onClick={() => handleActiveClick(item)} className={cn('search-bar__searched-btn', { active: activeCity.cityName === item.cityName })}>
                 {item.cityName}
                 {activeCity.cityName === item.cityName && (
