@@ -53,12 +53,45 @@ export function register(config) {
   }
 }
 
+// вызов модального окна
+const askUserToUpdate = reg => {
+  return Modal.confirm({
+    onOk: async () => {
+      // вешаем обработчик изменения состояния
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
+      });
+
+      // пропускаем ожидание 
+      if (reg && reg.waiting) {
+        reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+      }
+    },
+
+    onCancel: () => {
+      Modal.destroyAll();
+    },
+    icon: null,
+    title: 'Хорошие новости! ? ',
+    content:
+      'Мы только что обновили версию приложения! Чтобы получить обновления, нажмите на кнопку ниже (страница перезагрузится)',
+    cancelText: 'Не обновлять',
+    okText: 'Обновить'
+  });
+};
+
+// проверка регистрации
+
 function registerValidSW(swUrl, config) {
   navigator.serviceWorker
-    .register(swUrl)
-    .then((registration) => {
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
+  .register(swUrl)
+  .then(registration => {
+    if (registration.waiting) {
+      // оброботчик SW в ожидании
+      askUserToUpdate(registration);
+    }
+    registration.onupdatefound = () => {
+    const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
         }
@@ -136,3 +169,10 @@ export function unregister() {
       });
   }
 }
+
+
+// navigator.serviceWorker
+// .register(swUrl)
+// .then((registration) => {
+//   
+// 
