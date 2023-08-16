@@ -6,7 +6,7 @@ import React, {
 import axios from 'axios';
 import _ from 'lodash';
 import cn from 'classnames';
-import searchIcon from '../images/SearchIcon.svg';
+import CloseBtn from '../images/CloseBtn.svg';
 import routes from '../routes';
 import WeatherContext from '../context/weatherContext';
 import BtnArrow from '../images/BtnArrow.svg';
@@ -89,7 +89,7 @@ const SearchPanel = () => {
     <div className="search-panel" style={{ transform: `${isSearchOpen ? 'translateX(0)' : 'translate(-100%)'}` }}>
       <div className="search-panel__container">
         <button className="search-panel__close-button" onClick={() => toogleSearchBar(false)} id="close-panel" type="button" aria-label="Закрыть панель">
-          <img src={searchIcon} alt="search icon" />
+          <img src={CloseBtn} alt="search icon" />
         </button>
         <form className="search-panel__form" onSubmit={handleSubmit}>
           <div className="search-bar__input-block">
