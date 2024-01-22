@@ -39,7 +39,6 @@ export const WeatherProvider = ({ children }) => {
         setForeCastData(parseForecast(forecast.data));
         setWeatherData(parseWeatherData(weather.data));
         setLoading(false);
-        toogleSearchBar(false);
       }
     } catch (err) {
       console.log(err);
@@ -54,7 +53,7 @@ export const WeatherProvider = ({ children }) => {
         const { longitude } = position.coords;
         console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
         makeWeatherRequest(latitude, longitude, wheatherKey);
-        setActiveCity({ cityName: 'Текущее положение', lat: latitude, lon: longitude });
+        setActiveCity({ cityName: 'Текущее местоположение', lat: latitude, lon: longitude });
       } catch (e) {
         console.log(e.message);
       }

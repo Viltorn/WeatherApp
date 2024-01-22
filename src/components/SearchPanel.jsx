@@ -73,7 +73,8 @@ const SearchPanel = () => {
         setSearchedHistory(citiesToDisplay);
         setValue('');
         setSubmitting(false);
-        makeWeatherRequest(cityData.lat, cityData.lon, wheatherKey);
+        await makeWeatherRequest(cityData.lat, cityData.lon, wheatherKey);
+        toogleSearchBar(false);
       } else {
         throw new Error('Упс! Город не найден, попробуйте другой');
       }
