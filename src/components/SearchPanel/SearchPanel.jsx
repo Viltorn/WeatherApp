@@ -6,12 +6,12 @@ import React, {
 import axios from 'axios';
 import _ from 'lodash';
 import cn from 'classnames';
-import CloseBtn from '../images/CloseBtn.svg';
-import routes from '../routes';
-import WeatherContext from '../context/weatherContext';
-import BtnArrow from '../images/BtnArrow.svg';
+import CloseBtn from '../../assets/images/CloseBtn.svg';
+import routes from '../../routes';
+import WeatherContext from '../../context/weatherContext';
+import BtnArrow from '../../assets/images/BtnArrow.svg';
 import './SearchPanel.css';
-import { parseCityData } from '../utils/parseFunctions';
+import { parseCityData } from '../../utils/parseFunctions';
 
 /* UTILS */
 

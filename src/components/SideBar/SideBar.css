@@ -6,7 +6,7 @@
   min-width: 460px;
   height: 100vh;
   background-color: var(--background-secondary);
-  background: var(--background-secondary) url('../images/Cloud-background_1.png') no-repeat;
+  background: var(--background-secondary) url('../../assets/images/Cloud-background_1.png') no-repeat;
   background-position: top 106px center;
   background-blend-mode: difference;
   background-size: 683px 377px;
@@ -68,11 +68,11 @@
 }
 
 .side-bar__themeswitcher-btn.light {
-  background: url('../images/Switch-theme/lightTheme.svg');
+  background: url('../../assets/images/Switch-theme/lightTheme.svg');
 }
 
 .side-bar__themeswitcher-btn.dark {
-  background: url('../images/Switch-theme/darkTheme.svg');
+  background: url('../../assets/images/Switch-theme/darkTheme.svg');
 }
 
 .side-bar__snowflake-image {

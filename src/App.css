@@ -1,0 +1,8 @@
+.app-container {
+    background-color: var(--background-main);
+    min-height: 100vh;
+    height: 100%;
+    color: var(--main-font);
+    overflow-y: visible;
+    min-width: 320px;
+  }

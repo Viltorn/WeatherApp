@@ -4,8 +4,8 @@ import React, {
 } from 'react';
 import _ from 'lodash';
 import cn from 'classnames';
-import ForecastCard from './ForecastCard';
-import WeatherContext from '../context/weatherContext';
+import ForecastCard from '../ForecastCard/ForecastCard';
+import WeatherContext from '../../context/weatherContext';
 import './ForecastBlock.css';
 
 const gap = 24;

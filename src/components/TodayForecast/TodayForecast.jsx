@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import WindSign from '../images/WindSign.svg';
+import WindSign from '../../assets/images/WindSign.svg';
 import './TodayForecast.css';
-import DetailCard from './DetailCard';
-import WeatherContext from '../context/weatherContext';
+import DetailCard from '../DetailCard/DetailCard';
+import WeatherContext from '../../context/weatherContext';
 
 const TodayForecast = () => {
   const { weatherData } = useContext(WeatherContext);

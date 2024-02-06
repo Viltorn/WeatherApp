@@ -92,14 +92,14 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: var(--background-secondary) url('../images/Button-slider/inactive.svg');
+  background: var(--background-secondary) url('../../assets/images/Button-slider/inactive.svg');
 }
 
 .forecast-block__next-btn {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: var(--background-secondary) url('../images/Button-slider/active.svg');
+  background: var(--background-secondary) url('../../assets/images/Button-slider/active.svg');
 }
 
 .forecast-block__previous-btn.disabled,

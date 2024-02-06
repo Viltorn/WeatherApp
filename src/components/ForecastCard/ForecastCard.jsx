@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import './ForecastCard.css';
-import WeatherSpinner from './WeatherSpinner.jsx';
-import WeatherContext from '../context/weatherContext';
-import routes from '../routes';
+import WeatherSpinner from '../WeatherSpinner/WeatherSpinner.jsx';
+import WeatherContext from '../../context/weatherContext.js';
+import routes from '../../routes.js';
 
 const ForecastCard = ({ type, data, width }) => {
   const { isLoading } = useContext(WeatherContext);

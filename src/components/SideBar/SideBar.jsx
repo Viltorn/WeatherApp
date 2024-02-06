@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
-import SearchPanel from './SearchPanel.jsx';
-import locationPin from '../images/LocationPin.svg';
-import theme from '../themeData';
-import WeatherContext from '../context/weatherContext';
-import routes from '../routes.js';
-import WeatherSpinner from './WeatherSpinner.jsx';
+import SearchPanel from '../SearchPanel/SearchPanel.jsx';
+import locationPin from '../../assets/images/LocationPin.svg';
+import theme from '../../themeData.js';
+import WeatherContext from '../../context/weatherContext.js';
+import routes from '../../routes.js';
+import WeatherSpinner from '../WeatherSpinner/WeatherSpinner.jsx';
 import './SideBar.css';
 
 const SideBar = () => {

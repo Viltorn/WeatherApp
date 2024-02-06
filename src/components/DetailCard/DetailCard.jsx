@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './DetailCard.css';
-import WeatherSpinner from './WeatherSpinner.jsx';
-import WeatherContext from '../context/weatherContext';
+import WeatherSpinner from '../WeatherSpinner/WeatherSpinner.jsx';
+import WeatherContext from '../../context/weatherContext.js';
 
 const CardOption = ({ props }) => {
   const {
