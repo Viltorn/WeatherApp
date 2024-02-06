@@ -38,21 +38,22 @@ export const WeatherProvider = ({ children }) => {
       if (weather.status === 200 && forecast.status === 200) {
         setForeCastData(parseForecast(forecast.data));
         setWeatherData(parseWeatherData(weather.data));
-        setLoading(false);
       }
     } catch (err) {
       console.log(err);
       setError(err.message);
     }
+    setLoading(false);
   };
 
   const getLocatedWeather = () => {
-    function success(position) {
+    setLoading(true);
+    async function success(position) {
       try {
         const { latitude } = position.coords;
         const { longitude } = position.coords;
         console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-        makeWeatherRequest(latitude, longitude, wheatherKey);
+        await makeWeatherRequest(latitude, longitude, wheatherKey);
         setActiveCity({ cityName: 'Текущее местоположение', lat: latitude, lon: longitude });
       } catch (e) {
         console.log(e.message);
@@ -61,6 +62,7 @@ export const WeatherProvider = ({ children }) => {
 
     function locError() {
       console.log('Невозможно получить геолокацию');
+      setLoading(false);
     }
 
     if (navigator.geolocation) {
